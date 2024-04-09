@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<form class="form" id="formSubmit" method="get" action="/submit">
+    <div class="form-group">
+        <label for="location">Location:</label>
+        <input class="form-control" name="location" id="location" type="text" placeholder="Enter Location">
+    </div>
+    <div class="form-group">
+        <label for="location">Location:</label>
+        <input class="form-control" name="age" type="number" id="age" min="1" max="120" placeholder="Enter age">
+    </div>
+    <input class="form-control btn btn-success" type="submit" value="Submit">
+</form>
