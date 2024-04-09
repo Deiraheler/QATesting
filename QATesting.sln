@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QATesting", "QATesting.csproj", "{84BBF43E-A8A2-492B-B006-0719211B3141}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{BF4ADAC6-1FB8-4AD5-AB98-3C7DE6C8048B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{84BBF43E-A8A2-492B-B006-0719211B3141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84BBF43E-A8A2-492B-B006-0719211B3141}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84BBF43E-A8A2-492B-B006-0719211B3141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF4ADAC6-1FB8-4AD5-AB98-3C7DE6C8048B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF4ADAC6-1FB8-4AD5-AB98-3C7DE6C8048B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF4ADAC6-1FB8-4AD5-AB98-3C7DE6C8048B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF4ADAC6-1FB8-4AD5-AB98-3C7DE6C8048B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
