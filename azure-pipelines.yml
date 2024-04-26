@@ -8,8 +8,6 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
-  testAssemblyPattern: '**\bin\$(buildConfiguration)\**\*Tests.dll'
-  testResultsPattern: '**\bin\$(buildConfiguration)\**\TestResults\*.xml'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -25,8 +23,18 @@ steps:
     configuration: '$(buildConfiguration)'
 
 - task: DotNetCoreCLI@2
-  name: 'RunUnitTest'
+  displayName: 'Run Unit Tests'
   inputs:
     command: 'test'
-    projects: '**/Tests.cs'
-    configuration: '$(buildConfiguration)'
+    projects: '**/*Tests.csproj'
+    arguments: '--configuration $(buildConfiguration) --logger "trx;LogFileName=test_results.xml"'
+    publishTestResults: true
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '**/test_results.xml'
+    mergeTestResults: true
+    failTaskOnFailedTests: true
+    testRunTitle: 'Unit Test Results'
