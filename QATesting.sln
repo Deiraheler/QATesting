@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QATesting", "QATesting.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{BF4ADAC6-1FB8-4AD5-AB98-3C7DE6C8048B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{B294CB55-E12D-493F-8B60-D6D0DB5E3E53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{BF4ADAC6-1FB8-4AD5-AB98-3C7DE6C8048B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF4ADAC6-1FB8-4AD5-AB98-3C7DE6C8048B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF4ADAC6-1FB8-4AD5-AB98-3C7DE6C8048B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B294CB55-E12D-493F-8B60-D6D0DB5E3E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B294CB55-E12D-493F-8B60-D6D0DB5E3E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B294CB55-E12D-493F-8B60-D6D0DB5E3E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B294CB55-E12D-493F-8B60-D6D0DB5E3E53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
