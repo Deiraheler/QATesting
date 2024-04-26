@@ -24,25 +24,9 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
+- task: DotNetCoreCLI@2
+  name: 'RunUnitTest'
   inputs:
-    platform: '$(buildPlatform)'
+    command: 'test'
+    projects: '**/Tests.cs'
     configuration: '$(buildConfiguration)'
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: '$(testAssemblyPattern)'
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
-  inputs:
-    testResultsFormat: 'NUnit'
-    testResultsFiles: '$(testResultsPattern)'
-    mergeTestResults: true
-    failTaskOnFailedTests: true
-    testRunTitle: 'Publish Test Results'
