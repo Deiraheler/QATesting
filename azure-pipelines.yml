@@ -8,6 +8,8 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  testAssemblyPattern: '**\bin\$(buildConfiguration)\**\*Tests.dll'
+  testResultsPattern: '**\bin\$(buildConfiguration)\**\TestResults\*.xml'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -19,7 +21,6 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:OutDir=$(Build.ArtifactStagingDirectory)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
@@ -28,9 +29,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\$(Build.ArtifactStagingDirectory)**\*Tests.dll
-      !**\obj\**
+    testAssemblyVer2: '$(testAssemblyPattern)'
     searchFolder: '$(System.DefaultWorkingDirectory)'
 
 - task: PublishBuildArtifacts@1
@@ -43,7 +42,7 @@ steps:
   condition: succeededOrFailed()
   inputs:
     testResultsFormat: 'NUnit'
-    testResultsFiles: '**/TestResults/*.xml'
+    testResultsFiles: '$(testResultsPattern)'
     mergeTestResults: true
     failTaskOnFailedTests: true
     testRunTitle: 'Publish Test Results'
