@@ -5,6 +5,8 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
@@ -12,20 +14,34 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    restoreSolution: '**/*.sln'
+    restoreSolution: '$(solution)'
 
 - task: VSBuild@1
   inputs:
-    solution: '**/*.sln'
-    platform: 'Any CPU'
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
 - task: VSTest@2
   inputs:
-    platform: 'Any CPU'
+    platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
-      **\$(BuildConfiguration)\*test*.dll
+      **\$(buildConfiguration)\**\*Tests.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFormat: 'NUnit'
+    testResultsFiles: '**/TestResults/*.xml'
+    failTaskOnFailedTests: true
+    testRunTitle: 'Publish Test Results'
