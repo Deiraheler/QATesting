@@ -19,6 +19,7 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:OutDir=$(Build.ArtifactStagingDirectory)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
@@ -28,7 +29,7 @@ steps:
     configuration: '$(buildConfiguration)'
     testSelector: 'testAssemblies'
     testAssemblyVer2: |
-      **\$(buildConfiguration)\**\*Tests.dll
+      **\$(Build.ArtifactStagingDirectory)**\*Tests.dll
       !**\obj\**
     searchFolder: '$(System.DefaultWorkingDirectory)'
 
@@ -43,5 +44,6 @@ steps:
   inputs:
     testResultsFormat: 'NUnit'
     testResultsFiles: '**/TestResults/*.xml'
+    mergeTestResults: true
     failTaskOnFailedTests: true
     testRunTitle: 'Publish Test Results'
